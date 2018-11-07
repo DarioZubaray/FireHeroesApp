@@ -28,18 +28,24 @@ export class HeroesService {
                     });
   }
 
-  actualizarHeroe( heroe:Heroe, key: string ) {
+  actualizarHeroe( heroe:Heroe, key$: string ) {
     let body = JSON.stringify( heroe );
     let headers = new Headers({
       'Content-Type': 'application/json'
     });
 
-    let url = `${ this.heroeUrl }/${ key }.json`
+    let url = `${ this.heroeUrl }/${ key$ }.json`;
     return this.http.put( url, body, { headers: headers })
                     .map( (res : any) => {
                       console.log( res.json() );
                       return res.json();
                     });
+  }
+
+  getHeroe( key$: string) {
+    let url = `${ this.heroeUrl }/${ key$ }.json`;
+
+    return this.http.get( url ).map( res => res.json() );
   }
 
 }
