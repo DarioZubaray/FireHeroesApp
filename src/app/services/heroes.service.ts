@@ -24,7 +24,7 @@ export class HeroesService {
     return this.http.post( this.heroesUrl, body, { headers: headers })
                     .map( (res : any) => {
                       console.log( res.json() );
-                      return res.json().name;
+                      return res.json();
                     });
   }
 
@@ -34,8 +34,8 @@ export class HeroesService {
       'Content-Type': 'application/json'
     });
 
-    let url = ` ${ this.heroeUrl }/${ key }.json `
-    return this.http.put( this.heroeUrl + heroe.key$ + ".json", body, { headers: headers })
+    let url = `${ this.heroeUrl }/${ key }.json`
+    return this.http.put( url, body, { headers: headers })
                     .map( (res : any) => {
                       console.log( res.json() );
                       return res.json();
