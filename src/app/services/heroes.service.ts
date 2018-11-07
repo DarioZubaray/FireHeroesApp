@@ -21,9 +21,9 @@ export class HeroesService {
     });
 
     return this.http.post( this.heroesUrl, body, { headers: headers })
-                    .map( res => {
+                    .map( (res : any) => {
                       console.log( res.json() );
-                      return res;
+                      return res.json().name;
                     });
   }
 

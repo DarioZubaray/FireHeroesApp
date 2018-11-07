@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Heroe } from '../../interfaces/heroe.interface';
 import { HeroesService } from '../../services/Heroes.service';
 
@@ -14,7 +15,7 @@ export class HeroeComponent implements OnInit {
     casa: "Marvel",
     bio: ""
   };
-  constructor( private _heroeService: HeroesService ) { }
+  constructor( private _heroeService: HeroesService, private router: Router ) { }
 
   ngOnInit() {
   }
@@ -22,6 +23,12 @@ export class HeroeComponent implements OnInit {
   guardar(){
     console.log(this.heroe);
 
-    this._heroeService.nuevoHeroe(this.heroe).subscribe( data => { console.log(data) });
+    this._heroeService.nuevoHeroe(this.heroe)
+        .subscribe( (data: any) => {
+          console.log("id obtenido: " + data);
+          this.router.navigate([ '/heroe', data ]);
+        }, error => {
+          console.log(error);
+        });
   }
 }
