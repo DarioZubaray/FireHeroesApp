@@ -14,8 +14,10 @@ export class HeroesComponent implements OnInit {
   constructor( private _heroesService: HeroesService ) {
     this._heroesService.getHeroes().subscribe( (data:any) => {
       for( let key$ in data) {
-          this.heroes = data ;
-          this.loading = false;
+          setTimeout( ()=> {
+            this.heroes = data;
+            this.loading = false;
+          }, 3000);
       }
     });
   }
