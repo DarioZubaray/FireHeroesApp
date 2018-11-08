@@ -36,7 +36,7 @@
           </tr>
         </tbody>
       </table>
-      <div *ngIf="(heroes | keys).length === 0"class="alert alert-info">
+      <div *ngIf="(heroes | keys).length === 0 && !loading"class="alert alert-info">
         <strong>No hay</strong> registros que mostrar
       </div>
     </div>
